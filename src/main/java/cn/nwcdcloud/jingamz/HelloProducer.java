@@ -86,7 +86,7 @@ public class HelloProducer {
         ProducerRecord<String,String> record = new ProducerRecord<>(topicName,"JJJJJJIIIIIIIINNNNNNNNGGGGGGGGG1111");
         try {
              RecordMetadata metadata = (RecordMetadata) producer.send(record).get();
-             System.out.println("broker返回消息发送信息!!!!：" + metadata);
+             System.out.println("broker返回消息发送信息!!!!jingamz：" + metadata);
         } catch (Exception e){
             e.printStackTrace();
         }
