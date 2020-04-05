@@ -1,2 +1,0 @@
-# kafkatest
-jingamz kafka
