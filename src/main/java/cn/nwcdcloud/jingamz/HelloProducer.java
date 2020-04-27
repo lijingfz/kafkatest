@@ -39,13 +39,13 @@ public class HelloProducer {
         }
         */
         //Assign topicName to string variable
-        String topicName = "jingamz1111";
+        String topicName = "jingamz111";
 
         // create instance for properties to access producer configs
         Properties props = new Properties();
 
         //Assign localhost id
-        props.put("bootstrap.servers", "ec2-52-80-215-42.cn-north-1.compute.amazonaws.com.cn:9092");
+        props.put("bootstrap.servers", "b-3.jingamz-0416.m7xnks.c4.kafka.cn-northwest-1.amazonaws.com.cn:9092,b-4.jingamz-0416.m7xnks.c4.kafka.cn-northwest-1.amazonaws.com.cn:9092,b-2.jingamz-0416.m7xnks.c4.kafka.cn-northwest-1.amazonaws.com.cn:9092");
         props.put("batch.size", 16384);
 /*
         //Set acknowledgements for producer requests.
@@ -83,14 +83,15 @@ public class HelloProducer {
 
  */
         //producer.send(new ProducerRecord<String, String>(topicName, "Hello Jingamz !!!"));
-        ProducerRecord<String,String> record = new ProducerRecord<>(topicName,"JJJJJJIIIIIIIINNNNNNNNGGGGGGGGG1111");
-        try {
-             RecordMetadata metadata = (RecordMetadata) producer.send(record).get();
-             System.out.println("broker返回消息发送信息!!!!jingamz：" + metadata);
-        } catch (Exception e){
-            e.printStackTrace();
+        for (int i = 0; i <100 ; i++) {
+            ProducerRecord<String, String> record = new ProducerRecord<>(topicName, "JJJJJJIIIIIIIINNNNNNNNGGGGGGGGG1111" + i);
+            try {
+                RecordMetadata metadata = (RecordMetadata) producer.send(record).get();
+                System.out.println("broker返回消息发送信息!!!!jingamz：" + metadata);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
-
         System.out.println("Message sent successfully");
         producer.close();
     }
